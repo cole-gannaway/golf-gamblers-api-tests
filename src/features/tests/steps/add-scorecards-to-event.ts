@@ -6,7 +6,7 @@ export async function addScoreCardsToAnEvent() {
   const usersDocs = await db.collection('users').limit(2).get();
   const userIds: string[] = [];
   userIds.push(usersDocs.docs[0].id);
-  userIds.push(usersDocs.docs[2].id);
+  userIds.push(usersDocs.docs[1].id);
 
   // save scorcards
   for (let i = 0; i < userIds.length; i++) {

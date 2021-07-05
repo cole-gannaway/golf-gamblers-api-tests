@@ -98,6 +98,7 @@ export const subscribeAllUsersSlice = createSlice({
         }
       })
       .addCase(executeTestAsync.rejected, (state, action) => {
+        console.log(action.error);
         const step = action.meta.arg;
         const foundTestState = state.find(
           (testState) => testState.step === step

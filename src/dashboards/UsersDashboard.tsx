@@ -31,7 +31,9 @@ export function UsersDashboard() {
         return () => {
             unsubscribe();
         }
-    }, [dispatch])
+        // compiler wants to depend on dispatch
+        // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
         const unsubMethods: any[] = [];
@@ -45,7 +47,7 @@ export function UsersDashboard() {
                 // update the subscription state
                 dispatch(overWriteUserSubscription({
                     id: id,
-                    subscriptionState: accountData.subscriptionState
+                    subscriptionState: accountData?.subscriptionState
                 }));
             });
             unsubMethods.push(unsubAccount);
@@ -56,7 +58,9 @@ export function UsersDashboard() {
                 unsub();
             }
         }
-    }, [usersNames, dispatch])
+        // compiler wants to depend on dispatch 
+        // eslint-disable-next-line
+    }, [usersNames])
 
     return <div>
         <table>

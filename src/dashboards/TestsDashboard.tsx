@@ -8,7 +8,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 export function TestsDashboard() {
     const dispatch = useAppDispatch();
     const testStates = useAppSelector(selectTestsState);
-    console.log(testStates)
 
     async function handleRunAllTests() {
         const steps = Object.values(TestStep);
