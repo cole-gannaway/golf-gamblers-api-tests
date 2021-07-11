@@ -65,13 +65,17 @@ export function UsersDashboard() {
     return <div>
         <table>
             <thead>
-                <th>User</th><th>Subscribed</th>
-            </thead>
-            {Object.keys(usersNames).map((id, i) => {
-                return <tr key={'user-' + i}>
-                    <td>{usersNames[id].name}</td><td>{userSubscriptions[id] === undefined ? null : userSubscriptions[id].subscriptionState === "Basic" ? <DoneIcon style={{ color: "green" }} /> : <ClearIcon style={{ color: "red" }} />}</td>
+                <tr>
+                    <th>User</th><th>Subscribed</th><th>User Id</th>
                 </tr>
-            })}
+            </thead>
+            <tbody>
+                {Object.keys(usersNames).map((id, i) => {
+                    return <tr key={'user-' + i}>
+                        <td>{usersNames[id].name}</td><td>{userSubscriptions[id] === undefined ? null : userSubscriptions[id].subscriptionState === "Basic" ? <DoneIcon style={{ color: "green" }} /> : <ClearIcon style={{ color: "red" }} />}</td><td>{id}</td>
+                    </tr>
+                })}
+            </tbody>
         </table>
 
     </div>

@@ -10,6 +10,8 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 import { TestsDashboard } from './dashboards/TestsDashboard'
 import { UsersDashboard } from "./dashboards/UsersDashboard";
+import { ScorecardsDashboard } from "./dashboards/ScorecardsDashboard";
+import { LeaderboardsDashboard } from "./dashboards/LeaderboardsDashboard";
 
 function App() {
   return <Router>
@@ -22,6 +24,14 @@ function App() {
         <Link to="/users" style={{ color: "white" }}>
           <Typography variant="h6" color="inherit">Users</Typography>
         </Link>
+        <div style={{ width: 10 }}></div>
+        <Link to="/scorecards" style={{ color: "white" }}>
+          <Typography variant="h6" color="inherit">Scorecards</Typography>
+        </Link>
+        <div style={{ width: 10 }}></div>
+        <Link to="/Leaderboards" style={{ color: "white" }}>
+          <Typography variant="h6" color="inherit">Leaderboards</Typography>
+        </Link>
       </Toolbar>
     </AppBar>
     <Switch>
@@ -31,9 +41,15 @@ function App() {
       <Route path="/users">
         <UsersDashboard></UsersDashboard>
       </Route>
+      <Route path="/scorecards">
+        <ScorecardsDashboard></ScorecardsDashboard>
+      </Route>
+      <Route path="/leaderboards">
+        <LeaderboardsDashboard></LeaderboardsDashboard>
+      </Route>
       {/* Default path back to home */}
       <Route path="/*">
-        <Redirect to="/commands"></Redirect>
+        <Redirect to="/tests"></Redirect>
       </Route>
     </Switch>
   </Router>

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { addScoreCardsToAnEvent } from './steps/add-scorecards-to-event';
+import { createBets } from './steps/create-bets';
 import { createTestEvent } from './steps/create-test-event';
 import { populateDatabase } from './steps/populate-database';
 import { subscribeAllUsers } from './steps/subscribe-all-users';
@@ -17,6 +18,7 @@ export enum TestStep {
   SUBSCRIBE_ALL_USERS = 'Subscribe All Users',
   CREATE_TEST_EVENT = 'Create Test Event',
   ADD_SCORE_CARDS_TO_EVENT = 'Add Scorecards To An Event',
+  CREATE_BETS = 'Create Bets',
 }
 
 function createDefaultTestState(step: TestStep, description: string) {
@@ -47,6 +49,10 @@ const initialState: TestState[] = [
     TestStep.ADD_SCORE_CARDS_TO_EVENT,
     'Creates 2 scorecards and adds them to an event'
   ),
+  createDefaultTestState(
+    TestStep.CREATE_BETS,
+    'Creates bets and links them to scorecards and events'
+  ),
 ];
 
 export const executeTestAsync = createAsyncThunk(
@@ -65,6 +71,9 @@ export const executeTestAsync = createAsyncThunk(
         break;
       case TestStep.ADD_SCORE_CARDS_TO_EVENT:
         await addScoreCardsToAnEvent();
+        break;
+      case TestStep.CREATE_BETS:
+        await createBets();
         break;
       default:
         break;
@@ -98,7 +107,7 @@ export const subscribeAllUsersSlice = createSlice({
         }
       })
       .addCase(executeTestAsync.rejected, (state, action) => {
-        console.log(action.error);
+        console.error(action.error);
         const step = action.meta.arg;
         const foundTestState = state.find(
           (testState) => testState.step === step
